@@ -1,0 +1,36 @@
+
+/*apply to all*/
+html{
+	background: grey;
+	color: black;
+	font-family: 'Lexend Mega', sans-serif;
+	text-align: center;
+	font-size: 20px;
+	
+}
+/*apply to text*/
+p{
+  /*bullet*/
+	display: list-item;
+	list-style-type: disc;
+	list-style-position: inside;
+
+}
+/*apply to titles*/
+part{
+	font-weight: bold;
+	text-decoration: underline;
+
+}
+/*apply to images*/
+img{
+	width: 250px;
+    vertical-align: top;
+}
+/*apply to link*/
+a{
+	color: #64DE24;/*light green*/
+	text-decoration: none;
+	font-weight: bold;
+
+
