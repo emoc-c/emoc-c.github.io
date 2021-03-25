@@ -9,6 +9,7 @@ class blocks {
   }
   move(){
     this.x-=this.speed;
+    if(score>50) this.y+= 20*(noise(this.x/100)-0.5);
     fill(this.thecolor);
     circle(this.x,this.y,this.size);
     fill(255);
@@ -56,7 +57,7 @@ function draw(){
 //detect collisions
 function detect(){
   for(let i=0;i<obstacle.length;i++){
-    if (obstacle[i].distance()<img.width*0.15){
+    if (obstacle[i].distance()<img.width*0.17){
       dead=true;
       addbutton();
       frame=0;
@@ -89,7 +90,7 @@ function play(){
   for(let i=0;i<obstacle.length;i++){
     obstacle[i].move();
   }
-  //circle(mouseX,mouseY,img.width*0.15);
+  //circle(mouseX,mouseY,img.width*0.17);
   //draw the player
   push();
   translate(mouseX,mouseY);
