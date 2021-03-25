@@ -56,7 +56,7 @@ function draw(){
 //detect collisions
 function detect(){
   for(let i=0;i<obstacle.length;i++){
-    if (obstacle[i].distance()<img.width*0.2){
+    if (obstacle[i].distance()<img.width*0.15){
       dead=true;
       addbutton();
       frame=0;
@@ -89,7 +89,7 @@ function play(){
   for(let i=0;i<obstacle.length;i++){
     obstacle[i].move();
   }
-  
+  //circle(mouseX,mouseY,img.width*0.15);
   //draw the player
   push();
   translate(mouseX,mouseY);
