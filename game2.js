@@ -54,6 +54,16 @@ function draw(){
  
 }
 
+
+function pushother(){
+  for(let i=0;i<obstacle.length;i++){
+    for(let j=0;j<obstacle.length;j++){
+      if(i!=j && dist(obstacle[i].x,obstacle[i].y,obstacle[j].x,obstacle[j].y)<obstacle[i].size/2 + obstacle[j].size/2 && obstacle[i].x<obstacle[j].x){
+        obstacle[i].speed=obstacle[j].speed;
+      }
+    }
+  }
+}
 //detect collisions
 function detect(){
   for(let i=0;i<obstacle.length;i++){
@@ -84,8 +94,7 @@ function play(){
     obstacle[obstacle.length]= new blocks(random(1,15+int(frame/100)),random(10,200));
     score++;
   }
-  
-  
+  pushother();
   //move blocks
   for(let i=0;i<obstacle.length;i++){
     obstacle[i].move();
