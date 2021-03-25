@@ -16,6 +16,10 @@ p{
 	list-style-position: inside;
 
 }
+/*apply to fat text*/
+.fat{
+	font-size: 30px;
+}
 /*apply to titles*/
 part{
 	font-weight: bold;
@@ -32,5 +36,5 @@ a{
 	color: #64DE24;/*light green*/
 	text-decoration: none;
 	font-weight: bold;
-
+}
 
