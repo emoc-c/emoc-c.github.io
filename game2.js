@@ -1,6 +1,7 @@
 
 class blocks {
   constructor(posspeed,possize){
+    this.id=0;
     this.x=width;
     this.y=random(0,height);
     this.speed=posspeed;
@@ -9,7 +10,11 @@ class blocks {
   }
   move(){
     this.x-=this.speed;
-    if(score>50) this.y+= 20*(noise(this.x/100)-0.5);
+    if(this.id==1){
+     let ag=atan2(mouseY-this.y,mouseX-this.x);
+     this.y+=this.speed*sin(ag);
+    }
+    else if(score>50) this.y+= 20*(noise(this.x/100)-0.5);
     fill(this.thecolor);
     circle(this.x,this.y,this.size);
     fill(255);
@@ -92,6 +97,8 @@ function play(){
  //add blocks
   if(frame%(50-int(frame/100))==0){
     obstacle[obstacle.length]= new blocks(random(1,15+int(frame/100)),random(10,200));
+    //add an assassin block
+    if(score%10==0 && score !=0) obstacle[obstacle.length-1].id=1
     score++;
   }
   pushother();
