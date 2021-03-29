@@ -1,6 +1,9 @@
 
 class blocks {
   constructor(posspeed,possize){
+    //id:0=normal
+    //   1=assassin
+    //   2=bait
     this.id=0;
     this.x=width;
     this.y=random(0,height);
@@ -10,10 +13,17 @@ class blocks {
   }
   move(){
     this.x-=this.speed;
+    //assassin
     if(this.id==1){
      let ag=atan2(mouseY-this.y,mouseX-this.x);
      this.y+=this.speed*sin(ag);
+     //bait
+    }else if(this.id==2){
+     let ag=atan2((mouseY+this.size+img.width*0.17)-this.y,mouseX-this.x);
+     this.y+=this.speed*sin(ag);
+      
     }
+    //high speed
     else if(score>50) this.y+= 20*(noise(this.x/100)-0.5);
     fill(this.thecolor);
     circle(this.x,this.y,this.size);
@@ -41,8 +51,8 @@ function setup(){
   imageMode(CENTER);
   textAlign(CENTER,CENTER);
   textSize(50);
-  obstacle[0]= new blocks(1,100);
-  obstacle[1]= new blocks(10,100);
+  //obstacle[0]= new blocks(1,100);
+  //obstacle[1]= new blocks(10,100);
 }
 
 let button;
@@ -98,7 +108,10 @@ function play(){
   if(frame%(50-int(frame/100))==0){
     obstacle[obstacle.length]= new blocks(random(1,15+int(frame/100)),random(10,200));
     //add an assassin block
-    if(score%10==0 && score !=0) obstacle[obstacle.length-1].id=1
+    if(random(0,100)<=(score*60)/100){
+      if(random(0,1)>0.5) obstacle[obstacle.length-1].id=1
+      else obstacle[obstacle.length-1].id=2;
+    }
     score++;
   }
   pushother();
