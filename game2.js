@@ -42,8 +42,10 @@ let cnv;
 let img;
 let score=0;
 let obstacle=[];
+let high =0;
 function preload(){
   img=loadImage('img/badguy2.png');
+  high= getItem('highscore');
 }
 function setup(){
   cnv= createCanvas(windowWidth,windowHeight);
@@ -63,13 +65,14 @@ function draw(){
     play();
   }else{
     text("score :"+score,width/2,height/10);
+    text("highscore :"+high,width/2,2*height/10);
     button.mousePressed(newgame);
     
   }
  
 }
 
-
+//push other blocks
 function pushother(){
   for(let i=0;i<obstacle.length;i++){
     for(let j=0;j<obstacle.length;j++){
@@ -79,13 +82,22 @@ function pushother(){
     }
   }
 }
+
+function endgame(){
+  dead=true;
+  addbutton();
+  frame=0;
+  if(score>high){
+    high=score;
+    storeItem('highscore',high);
+  }
+
+}
 //detect collisions
 function detect(){
   for(let i=0;i<obstacle.length;i++){
     if (obstacle[i].distance()<img.width*0.17){
-      dead=true;
-      addbutton();
-      frame=0;
+      endgame();
     }
   }
 }
