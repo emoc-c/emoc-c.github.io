@@ -68,9 +68,9 @@ let obstacle=[];
 let high =0;
 let sky,ground;
 function preload(){
-  groundim=loadImage('img/ground.png');
+  groundim=loadImage('img/game/ground.png');
   
-  fond=loadImage('img/fond.png');
+  fond=loadImage('img/game/fond.png');
   img=loadImage('img/badguy2.png');
   high= getItem('highscore');
 }
