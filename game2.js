@@ -53,14 +53,12 @@ function setup(){
   imageMode(CENTER);
   textAlign(CENTER,CENTER);
   textSize(50);
-  //obstacle[0]= new blocks(1,100);
-  //obstacle[1]= new blocks(10,100);
 }
 
 let button;
 function draw(){
  
-  background(0);
+  background(0,50);
   if(!dead){ 
     play();
   }else{
@@ -70,6 +68,13 @@ function draw(){
     
   }
  
+}
+
+//restart screen
+function restart(){
+    text("score :"+score,width/2,height/10);
+    text("highscore :"+high,width/2,2*height/10);
+    button.mousePressed(newgame);
 }
 
 //push other blocks
