@@ -1,4 +1,27 @@
-
+class BG{
+  constructor(img,y){
+    this.img=img;
+    this.x1=width/2;
+    this.y=y;
+    this.x2=width/2+this.img.width;
+    this.speed=width/500;
+  }
+  move(){
+    if(this.x1>-this.img.width/2){
+      this.x1-=this.speed;
+      this.x2-=this.speed;
+    }
+    else{
+      this.x1=this.x2;
+      this.x2=this.x1+this.img.width;
+    }
+  
+  }
+  Draw(){
+    image(this.img,this.x1,this.y);
+    image(this.img,this.x2,this.y);
+  }
+}
 class blocks {
   constructor(posspeed,possize){
     //id:0=normal
@@ -39,11 +62,15 @@ class blocks {
 let dead=false;
 let frame=0;
 let cnv;
-let img;
+let img,fond,groundim;
 let score=0;
 let obstacle=[];
 let high =0;
+let sky,ground;
 function preload(){
+  groundim=loadImage('img/ground.png');
+  
+  fond=loadImage('img/fond.png');
   img=loadImage('img/badguy2.png');
   high= getItem('highscore');
 }
@@ -53,12 +80,18 @@ function setup(){
   imageMode(CENTER);
   textAlign(CENTER,CENTER);
   textSize(50);
+  noStroke();
+  fond.resize(width,height);
+  groundim.resize(width,height/6);
+  sky=new BG(fond,height/2);
+  ground=new BG(groundim,5*(height/6)+groundim.height/2);
 }
 
 let button;
 function draw(){
  
-  background(0,50);
+  background(0);
+  backg();
   if(!dead){ 
     play();
   }else{
@@ -69,7 +102,13 @@ function draw(){
   }
  
 }
-
+//draw bg
+function backg(){
+  sky.move();
+  sky.Draw();
+  ground.move();
+  ground.Draw();
+}
 //restart screen
 function restart(){
     text("score :"+score,width/2,height/10);
